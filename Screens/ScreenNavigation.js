@@ -16,6 +16,8 @@ import CheckOut from './CheckOut';
 import CheckIn from './CheckIn';
 import Setting from './Setting';
 import Tabs from '../navigation/Tabs';
+import Chats from './Chats';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -23,9 +25,35 @@ const Stack = createNativeStackNavigator();
 const ScreenNavigation = ({ navigation }) => {
   return (
     <NavigationContainer >
-      <Tabs />
-      {/* <Stack.Navigator>
-      <Stack.Screen name="settings" component={Setting} options={{ headerShown: false }} />
+      <Stack.Navigator>
+      <Stack.Screen name="tabs" component={Tabs} options={{ headerShown: false }} />
+        <Stack.Screen name="chats" component={Chats} options={{ headerShadowVisible: false,
+          title: 'My chats',
+          headerStyle: {
+          backgroundColor: '#F5F5F5',
+          elevation: 0,
+          shadowOpacity: 0
+          },
+          headerLeft: () => (
+            <View style={{ marginRight: -20,marginLeft: -20, }}>
+              <Icon.Button
+                name="keyboard-arrow-left"
+                size={25}
+                color="#979797"
+                
+
+                backgroundColor="#F5F5F5"
+                onPress={() => {
+                  navigation.goBack();
+                }}></Icon.Button>
+            </View>
+          ),
+
+          headerTintColor: '#AE282E',
+          headerTitleStyle: { fontFamily: 'DMSans-Bold',},
+        }} 
+          
+         />
         <Stack.Screen name="checkout" component={CheckIn} options={{ headerShadowVisible: false,
           title: 'Check Out Markings',
           headerStyle: {
@@ -276,7 +304,7 @@ const ScreenNavigation = ({ navigation }) => {
           />
         <Stack.Screen name="splash" component={Splash} options={{ headerShown: false }} />
         <Stack.Screen name="login" component={Login} options={{ headerShown: false }} />
-      </Stack.Navigator> */}
+      </Stack.Navigator>
     </NavigationContainer>
   )
 }

@@ -2,18 +2,20 @@ import styled from 'styled-components'
 
 export const InstallerWrap = styled.View`
     flex: 1;
-    padding: 10px;
+    padding: 20px;
     background-color: #F5F5F5;
+    `;
 
+export const InstallerArea = styled.View`
+    padding: 0 20px;
     `;
 
 export const InstallerText = styled.View`
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     text-align: center;
     align-items: center;
-    padding: 0 10px 0 10px;
     `;
 
 export const InsallerHeading = styled.Text`
@@ -31,7 +33,7 @@ export const InsallerSubHeading = styled.Text`
 
 export const InstallerImages = styled.View`
 flex-direction: row;
-justify-content: space-between;
+justify-content: space-evenly;
 align-items: center;
 `;
 
@@ -52,13 +54,13 @@ border: 1px solid #ddd;
 `;
 
 export const AddImage = styled.TouchableOpacity`
-background-color: #E0E5EC;
-margin: 10px;
+margin: 10px ;
 width: 90px;
 height: 90px;
 border-radius: 5px;
 justify-content: center;
 align-items: center;
+
 `;
 
 export const AddImgText = styled.Text`

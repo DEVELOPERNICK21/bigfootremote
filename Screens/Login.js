@@ -3,7 +3,6 @@ import { View, Text,Image, StyleSheet } from 'react-native'
 import Logo from '../src/assets/Images/image2.jpg'
 import FormInput from '../src/components/FormInput'
 import FormButton from '../src/components/FormButton'
-import BottomLine from '../src/components/BottomLine'
 
 const Login = (props) => {
     return (
@@ -45,7 +44,6 @@ const Login = (props) => {
              onPress={() => {
               props.navigation.navigate('terms');
             }}               />
-        <BottomLine />
         </View>
         
         </>

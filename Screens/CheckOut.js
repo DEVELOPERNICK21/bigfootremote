@@ -4,7 +4,7 @@ import FormInput from '../src/components/FormInput'
 import FormButton from '../src/components/FormButton'
 import { ProfileWrapper,UpdateText} from '../styles/ProfileStyle'
 
-const CheckOut = () => {
+const CheckOut = ({navigation}) => {
     return (
         <>
         <ProfileWrapper>

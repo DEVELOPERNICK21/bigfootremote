@@ -3,8 +3,11 @@ import { View, } from 'react-native'
 import FormInput from '../src/components/FormInput'
 import FormButton from '../src/components/FormButton'
 import { ProfileWrapper,UpdateText} from '../styles/ProfileStyle'
+import { useNavigation } from '@react-navigation/native';
+
 
 const Profile = () => {
+    const navigation = useNavigation();
     return (
         <>
         <ProfileWrapper>
@@ -30,7 +33,7 @@ const Profile = () => {
             <FormButton 
              buttonTitle="Save"
              onPress={() => {
-              props.navigation.navigate('terms');
+              navigation.navigate('settings');
             }}               />
         </ProfileWrapper>
         

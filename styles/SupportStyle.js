@@ -5,7 +5,7 @@ export const SupportWrap = styled.View`
   flex: 1;
 `;
 
-export const SupportItemView = styled.View`
+export const SupportItemView = styled.TouchableOpacity`
   background-color: #fff;
   flex-direction: row;
   margin: 10px;

@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, Image,StyleSheet} from 'react-native';
 import Logo from '../src/assets/Images/image.jpg'
-import BottomLine from '../src/components/BottomLine';
 import FormButton from '../src/components/FormButton'
 import Login from './Login';
 
@@ -17,7 +16,6 @@ const Splash = (props) => {
              onPress={() => {
               props.navigation.navigate('login');
             }}        />
-        <BottomLine />
       </View>
     </>
   );
