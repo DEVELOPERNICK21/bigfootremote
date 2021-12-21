@@ -1,11 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
-import ScreenNavigation from './Screens/ScreenNavigation'
+import Routes from './src/Navigation/Routes'
+import {Provider} from 'react-redux';
+import { store } from './src/redux/store';
 
 const App = () => {
   return (
     <>
-      <ScreenNavigation />
+      <Provider store={store} >
+          <Routes />
+      </Provider>
     </>
   )
 }

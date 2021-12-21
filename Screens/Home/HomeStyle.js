@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 
-export const HomeWrapper = styled.View`
+export const HomeWrapper = styled.SafeAreaView`
 flex:1;
 `;
 
 export const SearchView = styled.View`
-height: 15%;
+height: 12%;
 flex-direction: row;
 justify-content: center;
 align-items:center;
@@ -19,9 +19,9 @@ padding: 0 10px;
 margin: 5px;
 border-radius: 5px;
 shadowColor: '#000';
-shadowOpacity: 0.5px;
+shadowOpacity: 0.5;
 shadowRadius: 5px;
-elevation: 8px;`;
+elevation: 8;`;
 
 export const SearchInput = styled.TextInput`
 width: 90%;
@@ -39,10 +39,11 @@ border-radius: 5px;
 `;
 
 export const CalanderView = styled.View`
-height: 10%;
+height: 12%;
+margin: 0 10px;
 `;
 
-export const JobsView = styled.View`
+export const JobsView = styled.ScrollView`
 /* background-color: purple; */
 height: 70%;
 padding: 10px;
@@ -76,15 +77,25 @@ export const JobName  = styled.Text`
     `;
 
 export const JobStatus  = styled.Text`
-    background-color: #FFF5E1;
+    background-color: ${props =>  
+        props.forColor === 'Work in Progress' ?  '#FFF5E1' 
+        :  props.forColor === 'Overdue' ? '#FFF1F0' 
+        :  props.forColor === 'Upcoming' ? '#EFFBF0'
+        : '#000'
+    };
+    color: ${props =>  
+        props.forColor === 'Work in Progress' ?  '#FFB200' 
+        :  props.forColor === 'Overdue' ? '#FF3A29' 
+        :  props.forColor === 'Upcoming' ? '#27AE60'
+        : '#000'
+    };
     font-family: 'DMSans-Regular';
     font-size: 12px;
     padding: 2px 5px;
-    color: #FFB200;
     border-radius: 5px;
     `;
 
-export const CardArea = styled.View`
+export const CardArea = styled.TouchableOpacity`
 /* background-color: yellow; */
 background-color: #fff;
 margin: 5px 0px;
@@ -142,7 +153,7 @@ width: 80px;
 export const JobDate = styled.View`
 /* background-color: firebrick; */
 justify-content: space-between;
-width: 40%;
+width: 50%;
 `;
 
 export const StartDate = styled.View`
@@ -159,6 +170,7 @@ width: 50%;
 
 export const TimeLine = styled.View`
 flex-direction: row;
+padding-right: 10px;
 margin: 5px 10px 0 0;
 bottom: 10px;
 justify-content: center;

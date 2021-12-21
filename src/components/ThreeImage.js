@@ -1,5 +1,5 @@
 import React from 'react'
-import {  InstallerImages,ImageArea,InstallerImg} from '../../styles/InstallerStyle'
+import {  InstallerImages,ImageArea,InstallerImg} from '../../Screens/InstalerImages/InstallerStyle'
 
 const ThreeImage = () => {
     return (

@@ -1,19 +1,26 @@
 import React from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import {windowHeight, windowWidth} from '../../Utils/Dimension';
-
 import AntDesign from 'react-native-vector-icons/Feather';
 
-const FormInput = ({InputSubject,labelValue, placeholderText, iconType, ...rest}) => {
+          // onChangeText={changedText}
+const FormInput = ({InputSubject,labelValue, placeholderText, iconType,changedText, isPassword, ...rest}) => {
   return (
     <>
       <Text style={styles.Subjectstyle} >{InputSubject} </Text>
       <View style={styles.inputContainer}>
+      {
+        iconType ? 
         <View style={styles.iconStyle}>
           <AntDesign name={iconType} size={20} color="#666" />
         </View>
+
+        :
+        null
+      }
         <TextInput
           value={labelValue}
+          onChangeText={changedText}
           style={styles.input}
           numberOfLines={1}
           placeholder={placeholderText}

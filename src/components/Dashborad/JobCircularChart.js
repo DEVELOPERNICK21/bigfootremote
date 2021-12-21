@@ -1,31 +1,32 @@
 import React from 'react'
 import { View } from 'react-native'
-import { Guage,GuageText } from '../../../Screens/Dashboard/DashboardStyle'
+import { Guage,GuageText,PieBackground } from '../../../Screens/Dashboard/DashboardStyle'
 import Pie from 'react-native-pie'
 
 
 const JobCircularChart = (props) => {
     return (
-        <View style={{ width: 80, alignItems: 'center',margin: 10, justifyContent: 'center' ,backgroundColor:'#ECF7FF', borderRadius: 150}}>
+        <PieBackground secondPropcolor={props.pieBackgroundColor} >
         <Pie
           radius={40}
           innerRadius={33}
           sections={[
             {
-              percentage: 30,
-              color: '#02A0FC',
+              percentage:props.percentage,
+              color: props.pieColor,
             },
           ]}
-          backgroundColor="#ECF7FF"
+          backgroundColor={props.pieBackgroundColor}
         />
         <Guage
         >
           <GuageText
+          textColor={props.pieColor}
           >
            {props.percentage}%
           </GuageText>
         </Guage>
-      </View>
+      </PieBackground>
     )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import {windowHeight, windowWidth} from '../../../Utils/Dimension';
 import {
     LineChart,
 } from 'react-native-chart-kit'
@@ -17,36 +18,37 @@ const DashGraph = () => {
                     datasets: [
                         {
                             data: [
-                                30,
+                                10,
                                 20,
-                                30,
-                                40,
-                                50,
+                                35,
+                                25,
+                                20,
                             ],
                             color: (opacity = 1) => `rgba(134, 65, 244, ${opacity})`,    
                             },
                     ],
                 }}
-                
-                width={340} // from react-native
-                height={200}
-                // yAxisLabel={'10'}
+                fromZero={true}
+                yAxisInterval={5} 
+                // width={340} // from react-native
+                width={windowWidth - 40}
+                height={windowHeight / 4}
                 chartConfig={{
                     backgroundColor: '#fff',
                     backgroundGradientFrom: '#fff',
                     backgroundGradientTo: '#fff',
-                    decimalPlaces: 2, // optional, defaults to 2dp
+                    decimalPlaces: 0, // optional, defaults to 2dp
                     color: (opacity = 255) => `rgba(0, 0, 0, ${opacity})`,
                     style: {
                         borderRadius: 16,
                     },
                     propsForDots: {
-                        r: '',
-                        strokeWidth: '5',
+                        r: '1',
+                        strokeWidth: '4',
                         stroke: '#FF6060',
                     },
                     propsForBackgroundLines: {
-                        strokeDasharray: '', // solid background lines with no dashes
+                        strokeDasharray: '1', // solid background lines with no dashes
                     },
                 }}
                 bezier

@@ -17,16 +17,16 @@ import {
   TimeLine,
   Dash,
 } from  '../../../Screens/Home/HomeStyle';
-
-
+import { useNavigation } from '@react-navigation/native';
 
 
 const JobCard = (props) => {
+  const navigation = useNavigation();
   return (
-    <CardArea>
+    <CardArea  onPress={() => navigation.navigate(props.screenName)}  >
       <CardUpper>
         <JobName>{props.JobName}</JobName>
-        <JobStatus>Work in progress</JobStatus>
+          <JobStatus forColor={props.jobprogress}  > {props.jobprogress}</JobStatus>
       </CardUpper>
       <JobDetails>
         <JobDate>

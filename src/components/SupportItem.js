@@ -1,8 +1,6 @@
 import React from 'react'
 import { View, Text,TouchableOpacity} from 'react-native'
-import IonIcon from 'react-native-vector-icons/Ionicons';
-import Login from '../../Screens/Login';
-import { SupportItemView,SupportIcon,SupportText } from '../../styles/SupportStyle';
+import { SupportItemView,SupportIcon,SupportText } from '../../Screens/Support/SupportStyle';
 import { useNavigation } from '@react-navigation/native';
 
 
