@@ -8,5 +8,4 @@ const rootReducers = combineReducers({userReducer});
 
 export const store = createStore(rootReducers, applyMiddleware(thunk));
 
-console.log(store.getState())
-
+console.log(store.getState(), "here is the STORE DATA!!!!!!!!!!!")

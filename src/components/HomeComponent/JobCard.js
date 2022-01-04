@@ -18,10 +18,23 @@ import {
   Dash,
 } from  '../../../Screens/Home/HomeStyle';
 import { useNavigation } from '@react-navigation/native';
+import { format } from "date-fns";
 
 
 const JobCard = (props) => {
   const navigation = useNavigation();
+
+
+  
+  var start_Date = new Date(props.startDate);
+  var formattedStartDate = format(start_Date, 'yy-MM-dd', )
+
+  var end_Date = new Date(props.endDate);
+  var formattedEndDate = format(end_Date, 'yy-MM-dd', )
+  
+
+
+
   return (
     <CardArea  onPress={() => navigation.navigate(props.screenName)}  >
       <CardUpper>
@@ -33,7 +46,7 @@ const JobCard = (props) => {
           <StartDate>
             <UpperText>
               <CardTextGrey>Start Date</CardTextGrey>
-              <CardTextBlack>{props.startDate}</CardTextBlack>
+              <CardTextBlack>{formattedStartDate}</CardTextBlack>
             </UpperText>
             <TimeLine>
                 <GreyCircle></GreyCircle>
@@ -46,17 +59,17 @@ const JobCard = (props) => {
           </StartDate>
           <DownText>
             <CardTextGrey>Vehicle Type</CardTextGrey>
-            <CardTextBlack>Car</CardTextBlack>
+            <CardTextBlack>{props.VehiclType}</CardTextBlack>
           </DownText>
         </JobDate>
         <JobOtherDetail>
           <UpperText>
             <CardTextGrey>End Date</CardTextGrey>
-            <CardTextBlack>{props.endDate}</CardTextBlack>
+            <CardTextBlack>{formattedEndDate}</CardTextBlack>
           </UpperText>
           <DownText>
             <CardTextGrey>Car Registration No.</CardTextGrey>
-            <CardTextBlack>102456789</CardTextBlack>
+            <CardTextBlack>{props.VehicleNumber}</CardTextBlack>
           </DownText>
         </JobOtherDetail>
       </JobDetails>

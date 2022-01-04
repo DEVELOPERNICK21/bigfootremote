@@ -26,7 +26,7 @@ const ModalPicker = (props) => {
         )
     })
     return (
-        <ModalToucable
+        <ModalToucable  
             onPress={() => {
                 props.changeModalVisibilty(false)
                 console.log("Modal Tochable")

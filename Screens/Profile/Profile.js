@@ -5,6 +5,7 @@ import FormButton from '../../src/components/FormButton'
 import { ProfileContentWrap, ProfileWrapper,UpdateText} from './ProfileStyle'
 import { useNavigation } from '@react-navigation/native';
 import HeaderComponent from '../../src/components/Header/HeaderComponent'
+import NavigationStrings from '../../src/Constants/NavigationStrings'
 
 
 const Profile = (props) => {
@@ -39,7 +40,7 @@ const Profile = (props) => {
             <FormButton 
              buttonTitle="Save"
              onPress={() => {
-              navigation.navigate('settings');
+              navigation.navigate(NavigationStrings.SETTINGS_SCREEN);
             }}/>
             </ProfileContentWrap>
         </ProfileWrapper>

@@ -1,4 +1,3 @@
-import React from 'react'
 
 export default {
     // Main Screen 
@@ -13,6 +12,7 @@ export default {
     
     SPALSH_SCREEN: "Splash",
     LOGIN_SCREEN: "Login",
+    FOROGOT_PASS_SCREEN: "FOROGOT_PASS_SCREEN",
     
     // Other Screen 
 

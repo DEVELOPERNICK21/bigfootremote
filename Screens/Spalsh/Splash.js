@@ -19,7 +19,7 @@ const Splash = (props) => {
              buttonTitle="Get Started"
              onPress={() => {
               props.navigation.navigate(NavigationStrings.LOGIN_SCREEN);
-            }}        />
+            }}/>
       </SplashWrapper>
     </>
   );

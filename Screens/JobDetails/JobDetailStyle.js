@@ -253,7 +253,6 @@ font-family: "DMSans-Regular";
 
 export const TimeLineStatusWrapper = styled.View`
 background-color: #fff;
-height: 32%;
 border-radius: 5px;
 padding: 10px 10px;
 margin: 10% 0;

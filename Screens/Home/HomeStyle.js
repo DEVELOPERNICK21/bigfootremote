@@ -81,7 +81,7 @@ export const JobStatus  = styled.Text`
         props.forColor === 'Work in Progress' ?  '#FFF5E1' 
         :  props.forColor === 'Overdue' ? '#FFF1F0' 
         :  props.forColor === 'Upcoming' ? '#EFFBF0'
-        : '#000'
+        : '#fff'
     };
     color: ${props =>  
         props.forColor === 'Work in Progress' ?  '#FFB200' 

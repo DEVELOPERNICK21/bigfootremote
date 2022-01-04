@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Button, TextInput, Image, Alert} from 'react-native';
 import {
   HomeWrapper,
@@ -8,10 +8,64 @@ import {
 import SearchJob from '../../src/components/HomeComponent/SearchJob';
 import JobsSection from '../../src/components/HomeComponent/JobsSection';
 import CalendarStrip from 'react-native-calendar-strip';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const allDate = new Date().toLocaleString()
 
+
+// const ShowCurrentDate=()=>{
+ 
+      var date = new Date().getDate();
+      var month = new Date().getMonth() ;
+      var year = new Date().getFullYear();
+ 
+      const SelectedDate = (year + '-' + month + '-' + date);
+
+
+      // Alert.alert(SelectedDate);
+      // Alert.alert(year + '-' + month + '-' + date);
+ 
+    //  }
+
+
 const Home = ({navigation}) => {
+
+  
+useEffect(() => {
+
+  setTimeout(async () => {
+    // Fetching the data using API 
+   
+    let userToken;
+    userToken = null;
+        try {
+          userToken = await AsyncStorage.getItem('userToken')
+        } catch (error) {
+            console.log(error)
+        }
+        console.log(userToken, 'AUTHTOKEN FROM HOME PAGE IS BRINGS A MESSAGE');
+
+  fetch("https://bigfoot.reddotapps.com.sg/api/app/home-page", 
+  {
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${userToken}`
+    },
+    body:JSON.stringify({
+      "date":SelectedDate,
+    })
+  }
+  )
+  .then(res => res.json())
+  .then(async(data)=>{
+    console.log(data, 'THIS IS THE HOME DATA');
+  })
+
+}, 500)
+
+}, [])
 
   return (
     <HomeWrapper>

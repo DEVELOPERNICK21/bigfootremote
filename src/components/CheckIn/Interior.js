@@ -10,25 +10,8 @@ import ModalPicker from '../ModalInput';
 const Interior = () => {
   const [chooseData, setchooseData] = useState('')
   const [isModalVisible, setIsModalVisible] = useState(false)
-  const OPTIONS = ['Working', 'Not Working', 'Pending', 'To Collects']
-  const Data = [
-    {
-      title: 'Title 1',
-      data: ['Working', 'Not Working', 'Pending', 'To Collects']
-    },
-    {
-      title: 'Title 2',
-      data: ['Working', 'Not Working', 'Pending', 'To Collects']
-    },
-    {
-      title: 'Title 3',
-      data: ['Working', 'Not Working', 'Pending', 'To Collects']
-    },
-    {
-      title: 'Title 4',
-      data: ['Working', 'Not Working', 'Pending', 'To Collects']
-    },
-  ]    
+  const OPTIONS =['Working', 'Not Working', 'Pending', 'To Collect']
+ 
 
   const onPressOption = (option) => {
     changeModalVisibilty(false)

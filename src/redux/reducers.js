@@ -3,9 +3,12 @@ import * as actions from './action'
 const initialState = {
     email: '',
     password: '',
-    userDetail: {},
+    uid: '',
+    upComingData: '',
     isLoading: true,
     userToken: null,
+    isLogedIn: false,
+
 }
 
 
@@ -16,21 +19,18 @@ function userReducer(state = initialState, action) {
         case actions.SET_USER_PASSWORD:
             return { ...state, password: action.payload };
         case actions.USER_INFO:
-            return { ...state, userDetail: action.payload };
-        case actions.LOGIN:
-                return {
-                    ...state,
-                    userToken: action.payload.userToken,
-                    email: action.payload.userEmail,
-                    isLoading: false,
-                };
-        case actions.LOGOUT:
-                    return {
-                        ...state,
-                        userToken: null,
-                        email: null,
-                        isLoading: false,
-                    };
+            return { ...state, uid: action.payload };
+        case actions.UPCOMING_DATA:
+            return { ...state, upComingData: action.payload };
+        case actions.LOGIN_USER:
+            return {
+                ...state,
+                ...action.payload, // this is what we expect to get back from API call and login page input
+                isLoggedIn: true, // we set this as true on login
+            };
+        // case actions.LOGIN_USER:
+        //     return { ...state, userToken: action.payloadUserToken, payloadEmail: email, payloadIsLoading:  isLoading  };
+
         default:
             return state;
     }
