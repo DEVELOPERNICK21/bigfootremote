@@ -7,45 +7,103 @@ import NavigationStrings from '../../src/Constants/NavigationStrings';
 import { ForogotPassWrapper, ForogotContentWrap } from './ForgotpassStyle';
 import { useNavigation } from '@react-navigation/native';
 import * as Animatable from 'react-native-animatable';
+import { showSuccess, showError } from '../ErrorHelperFunction/HelperFunction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const SendOTP = (props) => {
   const [emailForPass, setEmailForPass] = useState();
-  const [inputOTP, setInputOTP] = useState(false);
   const [OTPForPass, setOTPForPass] = useState();
+  const [inputOTP, setInputOTP] = useState(false);
   const navigation = useNavigation();
 
 
 
-  const UpdatePassHandler = async () => {
+  const UpdatePassHandler = async (emailForPass) => {
+    console.log(emailForPass, "THIS IS THE MAIL RECIVED IN THE FUNCTION");
 
+    {
+      emailForPass === undefined ? (
+        showError(' Email can not be empty')
+      )
+        : 
+        fetch("https://bigfoot.reddotapps.com.sg/api/forget-password-request",
+          {
+            method: "POST",
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              "email": emailForPass,
+            })
+          }
+        )
+          .then(response => response.json())
+          .then(async (json) => {
+            {
+              json.success === undefined ? (
+                showError(' Invalid email')
+              )
+                :
+                console.log(json.success, "IT IS THE DATA AFTER SENDING THE OTP");
+              if (json.success === true) {
+                showSuccess("Enter the OTP recived on the mail")
+                setInputOTP(true)
+              }
+            }
 
-    // fetch("https://bigfoot.reddotapps.com.sg/api/app/forget-password-request", 
-    // {
-    //   method: "POST",
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body:JSON.stringify({
-    //     "password":emailForPass,
-    //   })
-    // }
-    // )
-    // .then(res => res.json())
-    // .then(async(data)=>{
-    //   console.log(data, 'THIS IS THE FORGOT PASS LOG');
-    // })
+          })
+          .catch((err) => {
+            showError('Login Failed ! Username or Password is incorrect')
+            // console.log(err);
+          });
+    }
 
-    // navigation.navigate(NavigationStrings.FOROGOT_PASS_SCREEN);
+  }
 
-    Alert.alert('ENTER THE OTP!', 'Enter the OTP you recived on your email. ', [
-      { text: 'Okay' }
-    ]
-    );
+  const VerifyOTP = async (verifyEmail, verifyOTP) => {
 
-    setInputOTP(true)
+    console.log(verifyEmail, "THIS IS THE verifyEmail RECIVED IN THE FUNCTION");
+    console.log(verifyOTP, "THIS IS THE verifyOTP RECIVED IN THE FUNCTION");
 
+     var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
+    var raw = JSON.stringify({
+      "email": verifyEmail,
+      "otp": verifyOTP
+    });
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow'
+    };
+
+    fetch("https://bigfoot.reddotapps.com.sg/api/forget-password-verify", requestOptions)
+      .then(response => response.text())
+      .then(async (result) => {
+        const obj = JSON.parse(result);
+        let userToken;
+        userToken = obj.token.token;
+        if (obj.success === true) {
+          try {
+            await AsyncStorage.setItem('userToken', userToken)
+          } catch (error) {
+            console.log(error)
+          }
+          showSuccess("Verifying OTP success")
+          console.log(obj.token.token, "IT IS THE TYPE AFTER VERIFYING THE OTP");
+          navigation.navigate(NavigationStrings.UPDATE_PASSWORD)
+        } else {
+          showError("Not able to send the OTP")
+        }
+      })
+      .catch(error => {
+        showError(error)
+        console.log('error', error)
+      })
   }
 
 
@@ -64,8 +122,17 @@ const SendOTP = (props) => {
           autoCapitalize="none"
           autoCorrect={false}
         />
+
         {
-          inputOTP === false ? null :
+          inputOTP === true ? null :
+
+            <FormButton
+              buttonTitle="SEND OTP"
+              onPress={() => { UpdatePassHandler(emailForPass) }} />
+        }
+
+        {
+          inputOTP === true ?
             <Animatable.View animation="fadeInUp" duration={500}>
 
               <FormInput
@@ -76,18 +143,13 @@ const SendOTP = (props) => {
                 autoCorrect={false}
               />
               <FormButton
-                buttonTitle="UPDATE PASSWORD"
-                onPress={UpdatePassHandler} />
+                buttonTitle="VERIFY OTP"
+                onPress={() => { VerifyOTP(emailForPass, OTPForPass) }} />
             </Animatable.View>
+            :
+            null
         }
 
-        {
-          inputOTP === true ? null :
-
-        <FormButton
-          buttonTitle="SEND OTP"
-          onPress={UpdatePassHandler} />
-        }
 
       </ForogotContentWrap>
     </ForogotPassWrapper>

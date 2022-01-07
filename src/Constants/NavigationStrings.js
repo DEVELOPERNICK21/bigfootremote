@@ -1,6 +1,6 @@
 
 export default {
-    // Main Screen 
+    // MAIN SCREEN
     HOME_SCREEN: "Home",
     DASHBOARD_SCREEN: "Dashboard",
     SCAN_SCREEN: "Scan",
@@ -8,13 +8,13 @@ export default {
     SETTINGS_SCREEN: "Settings",
     TABS: "Tabs",
 
-    // Auth Screen 
+    // AUTH SCREEN 
     
     SPALSH_SCREEN: "Splash",
     LOGIN_SCREEN: "Login",
     FOROGOT_PASS_SCREEN: "FOROGOT_PASS_SCREEN",
     
-    // Other Screen 
+    // OTHER SCREEN 
 
     JOB_DETAIL_SCREEN: "JobDetail",
     CHATS_SCREEN: "CHATS_SCREEN",
@@ -29,4 +29,5 @@ export default {
     TERMS_SCREEN: "TERMS_SCREEN",
     PRIVACY_SCREEN: "PRIVACY_SCREEN",
     SUPPORT_SCREEN: "SUPPORT_SCREEN",
+    UPDATE_PASSWORD: "UPDATE_PASSWORD",
 }

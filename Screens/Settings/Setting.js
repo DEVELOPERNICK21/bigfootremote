@@ -7,9 +7,13 @@ import NavigationStrings from '../../src/Constants/NavigationStrings';
 import SettingsItem from '../../src/components/SettingsComponent/SettingsItem';
 import ImagePath from '../../src/Constants/ImagePath';
 import { AuthContext } from '../../src/components/context';
+import { reduxlogout } from '../../src/redux/action';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 const Setting = () => {
-    const {signOut} = React.useContext(AuthContext);
+    // const {signOut} = React.useContext(AuthContext);
+    const dispatch = useDispatch();
 
     return (
         <SettingWrapper >
@@ -50,7 +54,7 @@ const Setting = () => {
             <SettingsItem 
                 ItemImage={ImagePath.Support_Image}
                 itemTitle={'Log Out'}
-                onPressProp={() => {signOut()}}
+                onPressProp={() => {dispatch(reduxlogout())}}
              />
         </SettingWrapper>
     )

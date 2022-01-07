@@ -8,28 +8,23 @@ const initialState = {
     isLoading: true,
     userToken: null,
     isLogedIn: false,
-
+    orderId: null,
 }
 
 
 function userReducer(state = initialState, action) {
     switch (action.type) {
-        case actions.SET_USER_EMAIL:
-            return { ...state, email: action.payload };
-        case actions.SET_USER_PASSWORD:
-            return { ...state, password: action.payload };
+        
         case actions.USER_INFO:
             return { ...state, uid: action.payload };
         case actions.UPCOMING_DATA:
-            return { ...state, upComingData: action.payload };
+            return { ...state, upComingData: action.payload };  
         case actions.LOGIN_USER:
-            return {
-                ...state,
-                ...action.payload, // this is what we expect to get back from API call and login page input
-                isLoggedIn: true, // we set this as true on login
-            };
-        // case actions.LOGIN_USER:
-        //     return { ...state, userToken: action.payloadUserToken, payloadEmail: email, payloadIsLoading:  isLoading  };
+            return { ...initialState , userToken: action.payload, isLoading : false };
+        case actions.LOGOUT_USER:
+            return { ...state, userToken: action.payload,  isLoading : false };
+        case actions.ORDER_ID:
+            return { ...state, orderId: action.payload, };
 
         default:
             return state;

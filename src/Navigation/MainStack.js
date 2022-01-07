@@ -9,7 +9,7 @@ import {
     FuelPump,
     InstallerImages,
     InstallerRemarks,
-    JobDetails, Material, Profile, Support, Terms,
+    JobDetails, Login, Material, Profile, Support, Terms, UpdatePass,
 } from '../../Screens/index'
 export default function(Stack){
     return(
@@ -66,6 +66,10 @@ export default function(Stack){
             <Stack.Screen 
                 name={NavigationStrings.CHATS_SCREEN}
                 component={Chats}
+            />
+            <Stack.Screen 
+                name={NavigationStrings.UPDATE_PASSWORD}
+                component={UpdatePass}
             />
         </>
     )

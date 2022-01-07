@@ -81,13 +81,23 @@ export const JobStatus  = styled.Text`
         props.forColor === 'Work in Progress' ?  '#FFF5E1' 
         :  props.forColor === 'Overdue' ? '#FFF1F0' 
         :  props.forColor === 'Upcoming' ? '#EFFBF0'
-        : '#fff'
+        :  props.forColor === '0' ? '#FFF5E1' 
+        :  props.forColor === '1' ?  '#FFF5E1' 
+        :  props.forColor === '2' ? '#FFF5E1' 
+        :  props.forColor === '3' ? '#FFF5E1' 
+        :  props.forColor === '4' ? '#FFF5E1' 
+        : '#EFFBF0'
     };
     color: ${props =>  
-        props.forColor === 'Work in Progress' ?  '#FFB200' 
+        props.forColor === '1' ?  '#FFB200' 
+        :  props.forColor === '2' ? '#FFB200' 
+        :  props.forColor === '3' ? '#FFB200' 
+        :  props.forColor === '4' ? '#FFB200' 
+        :  props.forColor === '0' ? '#FFB200' 
+        :  props.forColor === 'Work in Progress' ? '#FFB200' 
         :  props.forColor === 'Overdue' ? '#FF3A29' 
         :  props.forColor === 'Upcoming' ? '#27AE60'
-        : '#000'
+        : '#27AE60'
     };
     font-family: 'DMSans-Regular';
     font-size: 12px;

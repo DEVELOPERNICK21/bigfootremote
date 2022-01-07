@@ -25,8 +25,8 @@ export const LoginLogo = styled.Image`
 display: flex;
 width: 100px;
 height: 100px;
-backgroundSize: contain;
-resizemode: contain;
+/* backgroundSize: contain; */
+/* resizemode: contain; */
 `;
 
 export const LoginTextWrapper = styled.View`
@@ -38,7 +38,7 @@ export const LoginTextWrapper = styled.View`
 export const LoginText = styled.Text`
 alignItems: center;
 textAlign: center;
-fontSize: 25;
+fontSize: 25px;
 fontFamily: 'DMSans-Bold';
 color: #AE282E;
 `;

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Dimensions, FlatL
 import { useState } from 'react/cjs/react.development'
 import { CategoryView, JobCategoryWrapper, } from '../../../Screens/Jobs/JobsStyle'
 import NavigationStrings from '../../Constants/NavigationStrings'
-import JobCard from '../HomeComponent/JobCard'
+import JobCard from '../JobComponent/JobsJobCard'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { setUpcomingJobData } from '../../redux/action'
 import { useSelector, useDispatch } from 'react-redux'
@@ -64,12 +64,29 @@ const data = [
 const CategoryJob = () => {
     const [status, setStatus] = useState("Upcoming")
     const [dataList, setDataList] = useState(upComingData)
+    const [jobRole, setJobRole] = useState()
     const [workInProgressdataList, setWorkInProgressdataList] = useState('')
     const [overDueDataList, setOverDueDataList] = useState('')
+    const [statusUP, setStatusUP] = useState('')
+    const [statusOVER, setStatusOVER] = useState('')
 
-    const { upComingData } = useSelector(state => state.userReducer);
+    const { upComingData, upComing } = useSelector(state => state.userReducer);
     const dispatch = useDispatch()
 
+
+
+    const readData = async () => {
+        try {
+            const userRole = await AsyncStorage.getItem('userRole')
+
+            if (userRole !== null) {
+                setJobRole(userRole)
+            }
+        } catch (e) {
+            alert('Failed to fetch the data from storage')
+        }
+        console.log(upComing, "THE VALUE INSIDE THE UPCOMING");
+    }
 
     // Here Fetching The API
 
@@ -151,7 +168,7 @@ const CategoryJob = () => {
 
         }, 500)
 
-
+        readData();
 
     }, [])
 
@@ -160,35 +177,39 @@ const CategoryJob = () => {
     const setStatusFilter = status => {
         if (status === "Upcoming") {
             setDataList(dataList);
+            setStatusUP("Upcoming");
+            setStatusOVER(null);
+            console.log(statusUP, "IT THE UPCOMING STATUS ");
             console.log(dataList, "It is the Upcoming ");
         } else if (status === "Work in Progress") {
             setDataList(workInProgressdataList)
             console.log(dataList, "It is the WIP ");
+            setStatusOVER(null);
+            setStatusUP(null);
         } else if (status === "Overdue") {
             setDataList(overDueDataList)
+            setStatusOVER('Overdue')
+            setStatusUP(null);
             console.log(dataList, "It is the OD ");
+            console.log(statusOVER, "IT THE OVERDUE STATUS ");
         }
 
         setStatus(status)
     }
 
-    // const setStatusFilter = status => {
-    //     if (status !== null) {
-    //         setDataList([...data.filter(e => e.status === status)])
-    //     } else {
-    //         setDataList(data)
-    //     }
-    //     setStatus(status)
-    // }
-
     const renderItem = ({ item, index }) => {
+
+
         return (
             <View key={index} style={styles.itemContainer} >
                 <View>
                     <JobCard
                         screenName={NavigationStrings.JOB_DETAIL_SCREEN}
-                        jobprogress={"Upcoming"}
-                        // jobprogress={item.status}
+                        orderId={item.order_id}
+                        jobprogress={
+                            statusUP !== null ? statusUP :
+                                statusOVER !== null ? statusOVER :
+                                    jobRole}
                         JobName={'Genral Servicing & Repairs'}
                         startDate={item.start_time}
                         VehiclType={item.category}

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import { View, Text } from 'react-native'
 import IonIcon from 'react-native-vector-icons/Ionicons';
 import HeaderComponent from '../../src/components/Header/HeaderComponent';
@@ -7,8 +7,52 @@ import TimeLineStaus from '../../src/components/JobComponent/TimeLineStaus';
 import NavigationStrings from '../../src/Constants/NavigationStrings';
 import JobDetailCard from './JobDetailCard';
 import { DetailJobWrapper, JobNumberArea, JobMainStatus, JobHexNumber, JobStatusText, NavigateView, DetailScrollView } from './JobDetailStyle';
+import { useSelector,  } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const DeatilJob = (props) => {
+    const { orderId } = useSelector(state => state.userReducer);
+
+    
+useEffect(() => {
+
+
+    console.log(orderId, "It is the global Order ID");
+    setTimeout(async () => {
+      // Fetching the data using API 
+     
+      let userToken;
+      userToken = null;
+          try {
+            userToken = await AsyncStorage.getItem('userToken')
+          } catch (error) {
+              console.log(error)
+          }
+          console.log(userToken, 'AUTHTOKEN FROM Deatil PAGE IS BRINGS A MESSAGE');
+  
+    fetch("https://bigfoot.reddotapps.com.sg/api/app/get-job-detail", 
+    {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userToken}`
+      },
+      body:JSON.stringify({
+        "job_id":orderId,
+      })
+    }
+    )
+    .then(res => res.json())
+    .then(async(data)=>{
+      console.log(data, 'THIS IS THE DEATIL JOB DATA');
+    })
+  
+  }, 500)
+  
+  }, [])
+  
+
     return (
         <DetailJobWrapper>
             <HeaderComponent
